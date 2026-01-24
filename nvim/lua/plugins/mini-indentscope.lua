@@ -1,6 +1,6 @@
 return {
 	"echasnovski/mini.indentscope",
-	version = false, -- 최신 버전 사용
+	version = false, -- latest commit
 	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		-- 강조할 문자 설정
