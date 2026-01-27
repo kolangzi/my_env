@@ -5,24 +5,24 @@ vim.keymap.set("n", "<F9>", ":tabnew<CR>", { noremap = true, silent = true, desc
 
 -- Indentation settings (4 spaces)
 vim.keymap.set("n", "<F7>", function()
-  vim.opt.tabstop = 4
-  vim.opt.shiftwidth = 4
-  vim.opt.expandtab = true
+	vim.opt.tabstop = 4
+	vim.opt.shiftwidth = 4
+	-- vim.opt.expandtab = true
 end, {
-  noremap = true,
-  silent = true,
-  desc = "Set indent to 4 spaces",
-})
+		noremap = true,
+		silent = true,
+		desc = "Set indent to 4 spaces",
+	})
 -- Indentation settings (8 spaces)
 vim.keymap.set("n", "<F8>", function()
-  vim.opt.tabstop = 8
-  vim.opt.shiftwidth = 8
-  vim.opt.expandtab = true
+	vim.opt.tabstop = 8
+	vim.opt.shiftwidth = 8
+	-- vim.opt.expandtab = true
 end, {
-  noremap = true,
-  silent = true,
-  desc = "Set indent to 8 spaces",
-})
+		noremap = true,
+		silent = true,
+		desc = "Set indent to 8 spaces",
+	})
 
 -- Clear search highlight
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { noremap = true, silent = true, desc = "Clear search highlight", })

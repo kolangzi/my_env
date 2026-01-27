@@ -20,31 +20,31 @@ vim.opt.lazyredraw = true -- Make macros and regex faster by not redrawing
 
 local is_tmux = os.getenv("TMUX") ~= nil
 if vim.fn.has('nvim-0.10') == 1 then
-  local paste_plus, paste_star
+	local paste_plus, paste_star
 
-  if is_tmux then
-    paste_plus = function()
-      local contents = vim.fn.getreg('"')
-      return { vim.fn.split(contents, '\n'), vim.fn.getregtype('"') }
-    end
-    paste_star = function()
-      local contents = vim.fn.getreg('"')
-      return { vim.fn.split(contents, '\n'), vim.fn.getregtype('"') }
-    end
-  else
-    paste_plus = require('vim.ui.clipboard.osc52').paste('+')
-    paste_star = require('vim.ui.clipboard.osc52').paste('*')
-  end
+	if is_tmux then
+		paste_plus = function()
+			local contents = vim.fn.getreg('"')
+			return { vim.fn.split(contents, '\n'), vim.fn.getregtype('"') }
+		end
+		paste_star = function()
+			local contents = vim.fn.getreg('"')
+			return { vim.fn.split(contents, '\n'), vim.fn.getregtype('"') }
+		end
+	else
+		paste_plus = require('vim.ui.clipboard.osc52').paste('+')
+		paste_star = require('vim.ui.clipboard.osc52').paste('*')
+	end
 
-  vim.g.clipboard = {
-    name = 'OSC 52',
-    copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-    },
-    paste = {
-      ['+'] = paste_plus,
-      ['*'] = paste_star,
-    },
-  }
+	vim.g.clipboard = {
+		name = 'OSC 52',
+		copy = {
+			['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+			['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+		},
+		paste = {
+			['+'] = paste_plus,
+			['*'] = paste_star,
+		},
+	}
 end
