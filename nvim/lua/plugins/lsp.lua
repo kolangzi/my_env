@@ -10,7 +10,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "clangd" },
+				ensure_installed = { "clangd", "pyright", "ruff" },
 			})
 		end,
 	},
@@ -45,6 +45,55 @@ return {
 
 			-- explicitly enable clangd
 			vim.lsp.enable("clangd")
+
+			------------------------------------------------------------------
+			-- pyright: type checking, completions, go-to-definition
+			------------------------------------------------------------------
+			vim.lsp.config("pyright", {
+				cmd = { "pyright-langserver", "--stdio" },
+				filetypes = { "python" },
+				root_markers = {
+					"pyproject.toml",
+					"setup.py",
+					"setup.cfg",
+					"requirements.txt",
+					".git",
+				},
+				settings = {
+					pyright = {
+						-- let ruff handle import sorting
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							typeCheckingMode = "basic",
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "openFilesOnly",
+						},
+					},
+				},
+			})
+			vim.lsp.enable("pyright")
+
+			------------------------------------------------------------------
+			-- ruff: linting, formatting, import sorting
+			------------------------------------------------------------------
+			vim.lsp.config("ruff", {
+				cmd = { "ruff", "server" },
+				filetypes = { "python" },
+				root_markers = {
+					"pyproject.toml",
+					"ruff.toml",
+					".ruff.toml",
+					".git",
+				},
+				on_attach = function(client)
+					-- defer hover to pyright
+					client.server_capabilities.hoverProvider = false
+				end,
+			})
+			vim.lsp.enable("ruff")
 
 			------------------------------------------------------------------
 			-- Keymaps (unchanged behavior)
