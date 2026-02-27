@@ -2,7 +2,7 @@ return {
 	'saghen/blink.cmp',
 	build = 'cargo build --release',
 	dependencies = {
-		"giuxtaposition/blink-cmp-copilot",
+		"fang2hou/blink-copilot",
 		"zbirenbaum/copilot.lua",
 	},
 	opts = {
@@ -19,17 +19,15 @@ return {
 			default = { "lsp", "path", "snippets", "buffer", "copilot" },
 			providers = {
 				copilot = {
-					name = "Copilot",
-					module = "blink-cmp-copilot",
-					score_offset = 1000, -- set high to prioritize Copilot suggestions
+					name = "copilot",
+					module = "blink-copilot",
+					score_offset = 1000,
 					async = true,
-					transform_items = function(_, items)
-						for _, item in ipairs(items) do
-							item.kind_icon = ""
-							item.kind_name = "Copilot"
-						end
-						return items
-					end,
+					opts = {
+						max_completions = 3,
+						max_attempts = 4,
+						kind_icon = "",
+					},
 				},
 			},
 		},
