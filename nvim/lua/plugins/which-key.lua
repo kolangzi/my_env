@@ -8,6 +8,7 @@ return {
 			{ "<leader>f", group = "File" },
 			{ "<leader>o", group = "Overseer" },
 			{ "<leader>o", group = "Overseer", icon = " " },
+			{ "<leader>m", group = "Markdown", icon = " " },
 		},
 	},
 	keys = {
