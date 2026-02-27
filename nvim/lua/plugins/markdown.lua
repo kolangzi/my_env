@@ -12,22 +12,31 @@ return {
 			{ "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview (Browser)" },
 		},
 	},
-	-- render-markdown: based on buffer
+	-- markview: based on buffer
 	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-		ft = { "markdown", "quarto" },
-		opts = {
-			enabled = false,
-			admonition = {
-				enabled = true,
-			},
-			pipe_table = {
-				preset = "round",
-			},
-		},
+		"OXY2DEV/markview.nvim",
+		lazy = false,
+		config = function()
+			require("markview").setup({
+				preview = {
+					enable = false,
+				},
+				markdown = {
+					tables = {
+						parts = {
+							top = { "╭", "─", "╮", "┬" },
+							header = { "│", "│", "│" },
+							separator = { "├", "─", "┤", "┼" },
+							row = { "│", "│", "│" },
+							bottom = { "╰", "─", "╯", "┴" },
+							align = { "╼", "╾", "╴╶" },
+						},
+					},
+				},
+			})
+		end,
 		keys = {
-			{ "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", desc = "Render Markdown (Buffer)" },
+			{ "<leader>mr", "<cmd>Markview Toggle<cr>", desc = "Render Markdown (Buffer)" },
 		},
 	},
 }
