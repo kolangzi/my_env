@@ -9,14 +9,14 @@ return {
 		keymap = {
 			preset = "none",
 			['<CR>'] = { 'accept', 'fallback' },
-			['<Tab>'] = { 'select_next', 'fallback' },
-			['<S-Tab>'] = { 'select_prev', 'fallback' },
+			['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+			['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
 			['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
 			['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
 		},
 
 		sources = {
-			default = { "lsp", "path", "buffer", "copilot" },
+			default = { "lsp", "path", "snippets", "buffer", "copilot" },
 			providers = {
 				copilot = {
 					name = "Copilot",
@@ -51,7 +51,13 @@ return {
 				auto_show_delay_ms = 300,
 				window = { border = "rounded", },
 			},
-			ghost_text = { enabled = false; },
+			ghost_text = { enabled = false, },
 		},
+
+		appearance = {
+			nerd_font_variant = "mono",
+		},
+
+		signature = { enabled = true },
 	},
 }
