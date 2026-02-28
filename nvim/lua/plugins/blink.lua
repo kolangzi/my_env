@@ -26,7 +26,7 @@ return {
 					opts = {
 						max_completions = 3,
 						max_attempts = 4,
-						kind_icon = "",
+						kind_icon = "",
 					},
 				},
 			},
