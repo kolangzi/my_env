@@ -3,7 +3,6 @@ vim.g.maplocalleader = " " -- local leader
 vim.opt.ttimeoutlen = 10 -- Terminal key code timeout to 10ms
 vim.opt.timeoutlen = 500  -- General mapping timeout to 500ms
 vim.opt.redrawtime = 1500 -- Redraw time for complex syntax highlighting
-vim.opt.lazyredraw = true -- Make macros and regex faster by not redrawing
 -- if vim.fn.has('nvim-0.10') == 1 then
 -- 	vim.g.clipboard = {
 -- 		name = 'OSC 52',

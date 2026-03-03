@@ -1,7 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
-	opts = {},
 	config = function()
 		vim.api.nvim_set_hl(0, "IblIndent", { fg = "#2a2a2a" })
 
