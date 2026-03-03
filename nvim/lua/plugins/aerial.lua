@@ -12,7 +12,7 @@ return {
 
 		filter_kind = {
 			"Class", "Constructor", "Enum", "Function", "Interface",
-			"Module", "Method", "Struct", "Variable", "Constant", "Macro",
+			"Module", "Method", "Struct", "Variable", "Constant", "Macro", "TypeParameter",
 		},
 
 		backends = { "treesitter", "lsp", "markdown", "man" },
