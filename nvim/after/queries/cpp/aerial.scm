@@ -1,11 +1,12 @@
 ; extends
 
 ;; ============================================================================
-;; Custom aerial.nvim query for C language
+;; Custom aerial.nvim query extensions for C++ (also applies to .h files)
+;; - Adds macros (#define), global variables, and typedefs
+;; - The default cpp aerial query already handles: struct, enum, class,
+;;   function_declarator (definitions + prototypes)
 ;; - Uses #not-has-ancestor? to exclude local declarations (inside functions)
-;; - Works at any nesting depth (preproc_ifdef, linkage_specification, etc.)
 ;; ============================================================================
-
 ;; 1. Global variables (excludes function-local and parameter declarations)
 
 ;;    - Simple declaration: int x;
@@ -84,15 +85,7 @@
   (#set! "kind" "Variable")
 ))
 
-;; 2. Function prototypes (declarations with function_declarator, not definitions)
-((declaration
-  declarator: (function_declarator
-    declarator: (identifier) @name)) @symbol
-  (#not-has-ancestor? @symbol compound_statement)
-  (#set! "kind" "Function")
-)
-
-;; 3. Macros (#define)
+;; 2. Macros (#define)
 (preproc_def
   name: (identifier) @name
   (#set! "kind" "Constant")
@@ -103,29 +96,7 @@
   (#set! "kind" "Function")
 ) @symbol
 
-;; 4. Struct, Union, Enum definitions (with body only, excludes references)
-((struct_specifier
-  name: (type_identifier) @name
-  body: (field_declaration_list)) @symbol
-  (#not-has-ancestor? @symbol compound_statement)
-  (#set! "kind" "Struct")
-)
-
-((union_specifier
-  name: (type_identifier) @name
-  body: (field_declaration_list)) @symbol
-  (#not-has-ancestor? @symbol compound_statement)
-  (#set! "kind" "Struct")
-)
-
-((enum_specifier
-  name: (type_identifier) @name
-  body: (enumerator_list)) @symbol
-  (#not-has-ancestor? @symbol compound_statement)
-  (#set! "kind" "Enum")
-)
-
-;; 5. Typedef (struct/enum typedef + function pointer typedef)
+;; 3. Typedef (struct/enum typedef + function pointer typedef)
 ((type_definition
   declarator: (type_identifier) @name) @symbol
   (#not-has-ancestor? @symbol compound_statement)
@@ -138,10 +109,3 @@
   (#not-has-ancestor? @symbol compound_statement)
   (#set! "kind" "TypeParameter")
 )
-
-;; 6. Function definitions
-(function_definition
-  declarator: (function_declarator
-    declarator: (identifier) @name)
-  (#set! "kind" "Function")
-) @symbol
