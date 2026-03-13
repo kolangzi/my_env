@@ -70,6 +70,8 @@ return {
 						key = 'u'
 					},
 				},
+				project = { enable = false },
+				mru = { cwd_only = true },
 			},
 		}
 		vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#7AA89F" })

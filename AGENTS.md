@@ -64,6 +64,15 @@ my_env/
 - In tmux: paste falls back to register `"` (tmux intercepts OSC 52 paste)
 - Outside tmux: full OSC 52 paste
 
+### Dashboard
+- **dashboard-nvim** (`nvimdev/dashboard-nvim`) — startup screen with `hyper` theme
+- Custom WANGVIM ASCII art header with dynamic date (`os.date()`)
+- Header color: springGreen (`#7AA89F`) via `DashboardHeader` highlight
+- Shortcuts: Find Files, Grep, Settings (opens nvim config), Lazy Sync
+- `project` section disabled (`enable = false`)
+- `mru` section shows current working directory files only (`cwd_only = true`)
+- Available hyper theme config sections: `header`, `week_header`, `shortcut`, `packages`, `project`, `mru`, `footer`
+
 ### Key Architecture Decisions
 - Tab-based workflow (F2/F3 navigate, F9 creates new tab)
 - F6/F7/F8 for indentation mode switching (tabs vs spaces, tab size)
