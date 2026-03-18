@@ -8,7 +8,7 @@ alias grx='rg -n'
 alias fd='fdfind'
 alias vi='nvim'
 alias python='python3'
-alias cat='batcat'
+alias cat='batcat -p'
 
 con() {
 	local portnum=$1
