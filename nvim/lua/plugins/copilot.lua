@@ -11,6 +11,10 @@ return {
 --				},
 			},
 			panel = { enabled = false },
+			filetypes = {
+				gitcommit = true,
+				gitrebase = true,
+			},
 		})
 	end,
 }
