@@ -15,7 +15,6 @@ return {
 			"javascript",
 			"jsdoc",
 			"json",
-			"jsonc",
 			"lua",
 			"luadoc",
 			"luap",
@@ -41,10 +40,14 @@ return {
 			require("nvim-treesitter").install(to_install)
 		end
 
-		-- Treesitter indent
+		-- Treesitter indent (C/CPP uses cindent for better argument continuation)
+		local cindent_filetypes = { c = true, cpp = true }
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function()
-				if pcall(vim.treesitter.get_parser) then
+				if cindent_filetypes[vim.bo.filetype] then
+					vim.bo.cindent = true
+					vim.bo.indentexpr = ""
+				elseif pcall(vim.treesitter.get_parser) then
 					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 				end
 			end,
