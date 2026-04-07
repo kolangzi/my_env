@@ -1,3 +1,6 @@
+-- Restart Neovim (0.12+)
+vim.keymap.set("n", "<F5>", "<cmd>restart<CR>", { noremap = true, silent = true, desc = "Restart Neovim", })
+
 -- Tab navigation
 vim.keymap.set("n", "<F2>", "gT", { noremap = true, silent = true, desc = "Previous tab", })
 vim.keymap.set("n", "<F3>", "gt", { noremap = true, silent = true, desc = "Next tab", })
