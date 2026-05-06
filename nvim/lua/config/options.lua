@@ -7,7 +7,6 @@ opt.softtabstop = 4
 opt.shiftround = true
 opt.autoindent = true
 opt.cindent = true
-opt.smartindent = true
 opt.copyindent = true
 opt.wrap = false -- long line no wrap
 -- opt.breakindent = true -- wrapped line indent
@@ -30,7 +29,7 @@ opt.backspace = { "indent", "eol", "start" }
 opt.encoding = "UTF-8"
 opt.cmdheight = 1 -- command line height
 opt.scrolloff = 8
-opt.mouse:append("a")
+opt.mouse = "a"
 
 -- undo/backup
 opt.swapfile = false -- no swapfile
