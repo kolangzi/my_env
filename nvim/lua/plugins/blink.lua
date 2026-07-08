@@ -1,6 +1,6 @@
 return {
 	'saghen/blink.cmp',
-	build = function() require('blink.cmp').build():wait(60000) end,
+	build = function() require('blink.cmp').build():pwait() end,
 	dependencies = {
 		"saghen/blink.lib",
 		"fang2hou/blink-copilot",
