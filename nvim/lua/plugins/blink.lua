@@ -1,5 +1,9 @@
 return {
 	'saghen/blink.cmp',
+	-- Track main (V2). Prebuilt binaries are published only for release tags,
+	-- so the native fuzzy library is compiled from source here, which requires
+	-- a Rust toolchain (cargo) on every machine. lazy runs this build hook
+	-- automatically on install/update.
 	build = function() require('blink.cmp').build():pwait() end,
 	dependencies = {
 		"saghen/blink.lib",
@@ -58,5 +62,9 @@ return {
 		},
 
 		signature = { enabled = true },
+
+		-- Always use the Rust matcher; error instead of silently degrading to
+		-- the Lua implementation if the compiled library is unavailable.
+		fuzzy = { implementation = "rust" },
 	},
 }
