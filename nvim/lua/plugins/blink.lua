@@ -1,6 +1,13 @@
 return {
 	'saghen/blink.cmp',
-	build = function() require('blink.cmp').build():pwait() end,
+	build = function()
+		-- macOS 27 dyld rejects the dylib once rustc strips debuginfo after
+		-- linking (mis-aligned LINKEDIT string pool), so keep it unstripped.
+		if vim.fn.has("mac") == 1 then
+			vim.env.CARGO_PROFILE_RELEASE_STRIP = "none"
+		end
+		require("blink.cmp").build():pwait()
+	end,
 	dependencies = {
 		"saghen/blink.lib",
 		"fang2hou/blink-copilot",
