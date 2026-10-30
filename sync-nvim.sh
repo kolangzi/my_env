@@ -29,6 +29,6 @@ case "$response" in
 esac
 
 mkdir -p "$DEST"
-rsync -av --delete "$SRC/" "$DEST/"
+rsync -av --delete --exclude lazy-lock.json "$SRC/" "$DEST/"
 echo ""
 echo "Done. Synced $SRC -> $DEST"

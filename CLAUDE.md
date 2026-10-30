@@ -8,10 +8,10 @@ Portable dotfiles repository for Neovim, Bash (remote Linux servers via SSH/tmux
 
 ## Deployment
 
-- `nvim/` symlinks to `~/.config/nvim/`
+- `nvim/` is deployed to `~/.config/nvim/` via `sync-nvim.sh` — destructive rsync (`--delete`, prompts for confirmation); `lazy-lock.json` is excluded so each machine keeps its own lock
 - `bash/.bashrc` / `bash/.bash_aliases` symlink to `~/`
 - `zsh/.zshrc` symlinks to `~/`
-- `sync-nvim.sh` — destructive rsync from `nvim/` to `~/.config/nvim/` (prompts for confirmation)
+- `lazy-lock.json` is not tracked (gitignored); plugin versions follow upstream on install/update
 
 ## Architecture
 
